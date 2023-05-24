@@ -509,3 +509,211 @@ class FittingExponentialCurve {
     }
 }
 
+class RegressionYx {
+    RegressionYx() {
+        System.out.println("for regression  equation y on x");
+        Scanner sc = new Scanner(System.in);
+        Summation obj = new Summation();
+        System.out.println("\n\n\t\tCorrelation and Regression\t\n\nTopic:\tCalculate Correlation Coefficient\n\n");
+        System.out.println("Total number of X,Y present in the equation:");
+        int s = sc.nextInt();
+        double[] a = new double[s];
+        double[] b = new double[s];
+        double[] c = new double[s];
+        double[] d = new double[s];
+        double[] e = new double[s];
+        double[] f = new double[s];
+        double[] g = new double[s];
+        for (int i = 0; i < s; i++) {
+            System.out.println("The value of  x for column no." + (i + 1));
+            a[i] = sc.nextDouble();
+        }
+        for (int i = 0; i < s; i++) {
+            System.out.println("The value of y for column no." + (i + 1));
+            b[i] = sc.nextDouble();
+        }
+        for (int i = 0; i < s; i++) {
+            c[i] = (a[i] - Math.round(obj.Sum1(a, s)));
+            d[i] = (b[i] - Math.round(obj.Sum1(b, s)));
+            e[i] = Math.pow(c[i], 2);
+            f[i] = Math.pow(d[i], 2);
+            g[i] = c[i] * d[i];
+        }
+        System.out.println("\n\n\nso the table is:\n\n\n");
+        System.out.println("\t\t\t\t\t\tX\t\tY\t\tx=X-" + Math.round(obj.Sum1(a, s)) + "\t\ty=Y-"
+                + Math.round(obj.Sum1(b, s)) + "\t\tx^2\t\ty^2\t\txy");
+        for (int i = 0; i < s; i++) {
+            System.out.println(" in column no." + (i + 1) + "\t" + a[i] + "\t\t" + b[i] + "\t\t" + c[i] + "\t\t" + d[i]
+                    + "\t\t" + e[i] + "\t\t" + f[i] + "\t\t" + g[i] + "\t\n\n");
+        }
+        System.out.println(
+                "___________________________________________________________________________________________________________________________________________");
+        System.out.println("\t\t\t\t\t\t\t\t∑X=" + obj.Sum1(a, s) + "\t\t∑Y=\t" + obj.Sum1(b, s) + "∑x=\t"
+                + obj.Sum1(c, s) + "\t∑y=" + obj.Sum1(d, s) + "\t∑x^2=" + obj.Sum1(e, s) + "∑y^2=" + obj.Sum1(f, s)
+                + "\t∑xy=" + obj.Sum1(g, s));
+        System.out.println("\n\nthe all sum in the table is:\n");
+        System.out.println("\t∑X=" + obj.Sum1(a, s) + "\n∑Y=\t" + obj.Sum1(b, s) + "\n∑x=\t" + obj.Sum1(c, s) + "\n∑y="
+                + obj.Sum1(d, s) + "\n∑x^2=" + obj.Sum1(e, s) + "\n∑y^2=" + obj.Sum1(f, s) + "\n∑xy=" + obj.Sum1(g, s));
+        System.out.println(
+                "Standard deviation for x is:\t" + Math.sqrt((obj.Sum1(e, s) / s) - (Math.pow(obj.Sum1(c, s) / s, 2))));
+        System.out.println(
+                "Standard deviation for y is:\t" + Math.sqrt((obj.Sum1(f, s) / s) - (Math.pow(obj.Sum1(d, s) / s, 2))));
+        double ff1 = Math.sqrt((obj.Sum1(e, s) / s) - (Math.pow(obj.Sum1(c, s) / s, 2)));
+        double ff2 = Math.sqrt((obj.Sum1(f, s) / s) - (Math.pow(obj.Sum1(d, s) / s, 2)));
+        double cov = ((obj.Sum1(g, s) / s) - ((obj.Sum1(c, s) / s) * (obj.Sum1(d, s) / s)));
+        System.out.println("Covariance of x and y is \t cov(x,y):\t" + cov);
+        System.out.println(
+                "\n\n\n The correlation coefficient is...\n\n r=cov(x,y)/s.d(x)*s.d(y)=\t" + ((cov) / (ff1 * ff2)));
+        double byx = cov / Math.pow(ff1, 2);
+        System.out.println("\n\n\t\t\there bxy=\t" + byx);
+        System.out.println("\n\n\n\t\t\tthe regression equation is:\n\t\t(y\t-\t" + obj.Sum1(b, s) / s + ")\t=\t" + byx
+                + "(x-" + obj.Sum1(a, s) / s + ")");
+    }
+}
+
+class RegressionXy {
+    RegressionXy() {
+        System.out.println("\t\t\tRegression equation of x on y\t\n");
+        Scanner sc = new Scanner(System.in);
+        Summation obj = new Summation();
+        System.out.println("\n\n\t\tCorrelation and Regression\t\n\nTopic:\tCalculate Correlation Coefficient\n\n");
+        System.out.println("Total number of X,Y present in the equation:");
+        int s = sc.nextInt();
+        double[] a = new double[s];
+        double[] b = new double[s];
+        double[] c = new double[s];
+        double[] d = new double[s];
+        double[] e = new double[s];
+        double[] f = new double[s];
+        double[] g = new double[s];
+        for (int i = 0; i < s; i++) {
+            System.out.println("The value of  x for column no." + (i + 1));
+            a[i] = sc.nextDouble();
+        }
+        for (int i = 0; i < s; i++) {
+            System.out.println("The value of y for column no." + (i + 1));
+            b[i] = sc.nextDouble();
+        }
+        for (int i = 0; i < s; i++) {
+            c[i] = (a[i] - Math.round(obj.Sum1(a, s)));
+            d[i] = (b[i] - Math.round(obj.Sum1(b, s)));
+            e[i] = Math.pow(c[i], 2);
+            f[i] = Math.pow(d[i], 2);
+            g[i] = c[i] * d[i];
+        }
+        System.out.println("\n\n\nso the table is:\n\n\n");
+        System.out.println("\t\t\t\t\t\tX\t\tY\t\tx=X-" + Math.round(obj.Sum1(a, s)) + "\t\ty=Y-"
+                + Math.round(obj.Sum1(b, s)) + "\t\tx^2\t\ty^2\t\txy");
+        for (int i = 0; i < s; i++) {
+            System.out.println(" in column no." + (i + 1) + "\t" + a[i] + "\t\t" + b[i] + "\t\t" + c[i] + "\t\t" + d[i]
+                    + "\t\t" + e[i] + "\t\t" + f[i] + "\t\t" + g[i] + "\t\n\n");
+        }
+        System.out.println(
+                "___________________________________________________________________________________________________________________________________________");
+        System.out.println("\t\t\t\t\t\t\t\t∑X=" + obj.Sum1(a, s) + "\t\t∑Y=\t" + obj.Sum1(b, s) + "∑x=\t"
+                + obj.Sum1(c, s) + "\t∑y=" + obj.Sum1(d, s) + "\t∑x^2=" + obj.Sum1(e, s) + "∑y^2=" + obj.Sum1(f, s)
+                + "\t∑xy=" + obj.Sum1(g, s));
+        System.out.println("\n\nthe all sum in the table is:\n");
+        System.out.println("\t∑X=" + obj.Sum1(a, s) + "\n∑Y=\t" + obj.Sum1(b, s) + "\n∑x=\t" + obj.Sum1(c, s) + "\n∑y="
+                + obj.Sum1(d, s) + "\n∑x^2=" + obj.Sum1(e, s) + "\n∑y^2=" + obj.Sum1(f, s) + "\n∑xy=" + obj.Sum1(g, s));
+        System.out.println(
+                "Standard deviation for x is:\t" + Math.sqrt((obj.Sum1(e, s) / s) - (Math.pow(obj.Sum1(c, s) / s, 2))));
+        System.out.println(
+                "Standard deviation for y is:\t" + Math.sqrt((obj.Sum1(f, s) / s) - (Math.pow(obj.Sum1(d, s) / s, 2))));
+        double ff1 = Math.sqrt((obj.Sum1(e, s) / s) - (Math.pow(obj.Sum1(c, s) / s, 2)));
+        double ff2 = Math.sqrt((obj.Sum1(f, s) / s) - (Math.pow(obj.Sum1(d, s) / s, 2)));
+        double cov = ((obj.Sum1(g, s) / s) - ((obj.Sum1(c, s) / s) * (obj.Sum1(d, s) / s)));
+        System.out.println("Covariance of x and y is \t cov(x,y):\t" + cov);
+        System.out.println(
+                "\n\n\n The correlation coefficient is...\n\n r=cov(x,y)/s.d(x)*s.d(y)=\t" + ((cov) / (ff1 * ff2)));
+        double bxy = cov / Math.pow(ff2, 2);
+        System.out.println("\n\n\t\t\there bxy=\t" + bxy);
+        System.out.println("\n\n\n\t\t\tthe regression equation is:\n\t\t(x\t-\t" + obj.Sum1(a, s) / s + ")\t=\t" + bxy
+                + "(y-" + obj.Sum1(b, s) / s + ")");
+    }
+}
+
+class NormalRank {
+    NormalRank() {
+        Scanner sc = new Scanner(System.in);
+        Summation obj = new Summation();
+        System.out.println("\n\n\t\tCorrelation and Regression\t\n\nTopic:\tRank\n\n");
+        System.out.println("Total number of x,y present in the question?:");
+        int s = sc.nextInt();
+        double[] a = new double[s];
+        double[] b = new double[s];
+        double[] c = new double[s];
+        double[] d = new double[s];
+        for (int i = 0; i < s; i++) {
+            System.out.println("The value of  x for column no." + (i + 1));
+            a[i] = sc.nextDouble();
+        }
+        for (int i = 0; i < s; i++) {
+            System.out.println("The value of y for column no." + (i + 1));
+            b[i] = sc.nextDouble();
+        }
+        for (int i = 0; i < s; i++) {
+            d[i] = a[i] - b[i];
+            c[i] = Math.pow(d[i], 2);
+        }
+        System.out.println("\n\n\nso the table is:\n\n\n");
+        System.out.println("\t\t\t\t\t\t\t\tX\t\t\tY\t\t\td=x-y\t\t\td^2xy");
+        for (int i = 0; i < s; i++) {
+            System.out.println(
+                    " in column no." + (i + 1) + "\t" + a[i] + "\t\t" + b[i] + "\t\t" + d[i] + "\t\t" + c[i] + "\n\n");
+        }
+        System.out.println(
+                "___________________________________________________________________________________________________________________________________________");
+        System.out.println("\t\t\t\t\t\t\t\t∑X=" + obj.Sum1(a, s) + "\t\t∑Y=\t" + obj.Sum1(b, s) + "∑d=\t"
+                + obj.Sum1(d, s) + "\t∑d^2=" + obj.Sum1(c, s));
+        double r = 1 - ((6 * obj.Sum1(c, s)) / ((Math.pow(s, 3) - s)));
+        System.out.println("\n\n\n\t\t\tThe rank is\n\t\t\t\t R=\t" + r);
+    }
+}
+
+public class MathAllinOne {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(
+                " 1.For Mean Deviation Calculator Press : 1(one)\n2.For Standard Deviation Calculation press : 2(two)");
+        System.out.println(
+                "\n3.For Covariance calculation press :3(three)\n4.For Mean Value calculation in Tabular From and Class Interval press:4(Four) ");
+        System.out.println(
+                "\n5.For Normal or simple Arithmetic Mean press: 5(five)\n6.For Fitting Geometric Curve Table press: 6(six)");
+        System.out.println(
+                "\n7.For Fitting Straight Line press :7(seven)\n8.For Fitting ParaBola press: 8(Eight)\n9.For Fitting Exponential curve press: 9(Nine) ");
+        System.out.println(
+                "\n10.For Correlation coefficient press:10(Ten)\n11.For regression y on x press 11(Eleven)\n 12.For regression x on y press 12(Twelve)");
+        System.out.println("13.For rank press 13 or >13");
+        System.out.println("\nplease enter a number to continue....");
+        int s1 = sc.nextInt();
+        if (s1 == 1) {
+            MeanDeviation obj = new MeanDeviation();
+        } else if (s1 == 2) {
+            StandardDeviation obj = new StandardDeviation();
+        } else if (s1 == 3) {
+            Covariance obj = new Covariance();
+        } else if (s1 == 4) {
+            MeanValueCalculatorClassInterval obj = new MeanValueCalculatorClassInterval();
+        } else if (s1 == 5) {
+            SimpleArithmeticMean obj = new SimpleArithmeticMean();
+        } else if (s1 == 6) {
+            FittingGeometricCurve obj = new FittingGeometricCurve();
+        } else if (s1 == 7) {
+            FittingStraightLine obj = new FittingStraightLine();
+        } else if (s1 == 8) {
+            FittingParaBola obj = new FittingParaBola();
+        } else if (s1 == 9) {
+            FittingExponentialCurve obj = new FittingExponentialCurve();
+        } else if (s1 == 10) {
+            CorrelationCoefficient obj = new CorrelationCoefficient();
+        } else if (s1 == 11) {
+            RegressionYx obj = new RegressionYx();
+        } else if (s1 == 12) {
+            RegressionXy obj = new RegressionXy();
+        } else {
+            NormalRank obj = new NormalRank();
+        }
+        System.out.println("\n\n\n\n\n\t\t\t\tThank You\t\t\t\t\n\n\n");
+    }
+}
